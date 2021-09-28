@@ -6,6 +6,7 @@
             <label for="exampleInputEmail1" class="form-label">Category</label>
             <input name="category" type="text" class="form-control" value="<?= $category ?>">
         </div>
+        
         <button name="page" value="categories" type="submit" class="btn btn-primary">Add</button>
     </form>
 
@@ -17,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php for ($i = 0; $i < count($categories); $i++) { ?>
+            <?php for ($i = 0; $i < count($categories ?? []); $i++) { ?>
                 <tr>
                     <th scope="row"><?= $i + 1 ?></th>
                     <td><?= $categories[$i] ?></td>

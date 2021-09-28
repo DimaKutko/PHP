@@ -1,7 +1,7 @@
 <?php include_once __DIR__ . '/../widgets/header.php'; ?>
 
 <div class="container">
-    <div class="row row-cols-2">
+    <div class="row row-cols-3">
         <?php
         $nullImg = 'https://miro.medium.com/max/1000/1*-Nr0OP_Nu7b2NPrcgJ1SuA.png';
 
