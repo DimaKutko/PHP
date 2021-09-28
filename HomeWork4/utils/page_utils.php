@@ -7,7 +7,7 @@ function view($filename, $data = [])
 
     extract($data);
 
-    include __DIR__ . "/../views/{$filename}.php";
+    include __DIR__ . "/../pages/{$filename}.php";
 
     $output = ob_get_contents();
 
