@@ -10,7 +10,7 @@
                 <div class="card" style="width: 18rem;">
                     <img src="<?= $value['img'] ?? $nullImg ?>" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $value['title'] ?? null ?></h5>
+                        <h5 class="card-title"><?= $value['title'] ?? null ?> (<?= $value['category'] ?? null ?>)</h5>
                         <p class="card-text"><?= $value['subtitle'] ?? null ?></p>
                     </div>
                 </div>
