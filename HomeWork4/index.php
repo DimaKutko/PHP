@@ -1,5 +1,9 @@
 <?php
 
-$page = $_GET['page'] ?? 'home';
+include_once 'utils/page_utils.php';
 
-include_once __DIR__ . '/controllers/' . $page . '_controller.php';
+$page = $_GET['page'] ?? $_POST['page'] ?? 'home';
+
+$parms = array_merge($_POST, $_GET, ['isPost' => !empty($_POST)]);
+
+renderController($page, $parms);

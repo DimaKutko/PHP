@@ -8,14 +8,14 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="margin-bottom: 30px;">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <?php
                     $pages = ['home', 'products', 'categories'];
                     foreach ($pages  as $value) { ?>
-                        <form action="index.php">
+                        <form action="get" action="index.php">
                             <button name="page" value="<?= $value ?>" type="submit" class="btn btn-secondary" style="margin: 10px;"><?= ucwords($value) ?></button>
                         </form>
                     <?php } ?>
@@ -24,14 +24,11 @@
         </nav>
     </div>
 
-    <?php if (!empty($errors)) { ?>
+
+    <?php if (!empty($error)) { ?>
         <div class="container">
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    <?php foreach ($errors as $value) { ?>
-                        <li> <?= $value ?></li>
-                    <?php } ?>
-                </ul>
+            <div class="alert alert-danger " role="alert">
+                <?= $error ?>
             </div>
         </div>
     <?php } ?>
