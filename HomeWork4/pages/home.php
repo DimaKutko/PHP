@@ -2,13 +2,16 @@
 
 <div class="container">
     <div class="row row-cols-2">
-        <?php foreach ($products as $value) { ?>
-            <div class="col">
+        <?php
+        $nullImg = 'https://miro.medium.com/max/1000/1*-Nr0OP_Nu7b2NPrcgJ1SuA.png';
+
+        foreach ($products as $value) { ?>
+            <div class="col" style="padding-top: 30px;">
                 <div class="card" style="width: 18rem;">
-                    <img src="<?= $value['img'] ?>" class="card-img-top">
+                    <img src="<?= $value['img'] ?? $nullImg ?>" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $value['title'] ?></h5>
-                        <p class="card-text"><?= $value['subtitle'] ?></p>
+                        <h5 class="card-title"><?= $value['title'] ?? null ?></h5>
+                        <p class="card-text"><?= $value['subtitle'] ?? null ?></p>
                     </div>
                 </div>
             </div>
