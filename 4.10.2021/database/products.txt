@@ -1,1 +1,0 @@
-[{"name":"Product name","sku":"Product name","image":"image.png"},{"name":"q2","sku":"awe","image":""},{"name":"q2","sku":"awe","image":""},{"name":"q2","sku":"awe","image":""},{"name":"q2","sku":"awe","image":"DSC_3325.jpg"},{"name":"q2","sku":"awe","image":"DSC_3325.jpg"}]
