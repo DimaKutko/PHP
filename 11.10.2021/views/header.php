@@ -22,6 +22,7 @@
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                         <a class="nav-link" href="/products">Products</a>
                         <a class="nav-link" href="/products/show">Show</a>
+                        <a class="nav-link" href="/file_menager">Files</a>
                     </div>
                 </div>
             </div>

@@ -4,12 +4,12 @@ class ProductsController
 {
     public function index()
     {
-        $product = new ProductModel();
+        $product = ProductModel::all();
 
-        $products = $product->all();
+        // dump($product);
 
         return renderView('products_table', [
-            'products' => $products
+            'products' => $product
         ]);
     }
 
@@ -20,6 +20,7 @@ class ProductsController
 
     public function create()
     {
+
         $error = self::validateNewProduct();
 
         if (!empty($error)) {
@@ -32,7 +33,6 @@ class ProductsController
 
         $fileName = null;
         if (!empty($_FILES['image'])) {
-
             $uploaddir = __DIR__ . '/../storage/';
             $fileName =  basename($_FILES['image']['name']);
             $filePath = $uploaddir . $fileName;
@@ -55,13 +55,13 @@ class ProductsController
 
         $product->removeByKey($_POST['id']);
 
-        redirect('/products');
+        // redirect('/products');
     }
 
     private static function  validateNewProduct()
     {
 
-        $name = $_POST['name'] ?? null;
+        $name = $_POST['name'];
 
         if (empty($name)) {
             return 'Name is required';

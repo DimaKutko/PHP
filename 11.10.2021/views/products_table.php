@@ -8,24 +8,22 @@
                 <th scope="col">Name</th>
                 <th scope="col">Article</th>
                 <th scope="col">Image</th>
-                <th scope="col"></th>
+                <!-- <th scope="col"></th> -->
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($products as $value) {
-                $key = array_search($value, $products);
-            ?>
+            <?php foreach ($products as $key => $product) { ?>
                 <tr>
-                    <th name='id' value='<?= $key ?>' scope="row"><?= $key ?></th>
-                    <td><?= $value['name'] ?></td>
-                    <td><?= $value['sku'] ?></td>
-                    <td><img style="height: 150px;" src="<?= getImagePath($value['image']) ?>" class="img-fluid"></td>
-                    <td>
+                    <th name='id' product='<?= $key ?>' scope="row"><?= $key ?></th>
+                    <td><?= $product->name ?></td>
+                    <td><?= $product->sku ?></td>
+                    <td><img style="height: 150px;" src="<?= getImagePath($product->image) ?>" class="img-fluid"></td>
+                    <!-- <td>
                         <form action="/products/delete" method="post">
-                            <input type="hidden" name="id" value="<?= $key ?>" />
+                            <input type="hidden" name="id" product="<?= $key ?>" />
                             <button type="submit" class="btn btn-danger">Remove</button>
                         </form>
-                    </td>
+                    </td> -->
                 </tr>
             <?php } ?>
         </tbody>

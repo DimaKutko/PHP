@@ -26,7 +26,7 @@ function printArray($array)
     echo '<br/>';
     echo '<br/>';
     foreach ($array as $key => $value) {
-        echo $key . ' => ' . $value . '<br/>';
+        echo $key . ' => ' . print_r($value, true) . '<br/>';
     }
     echo '<br/>';
     echo '<br/>';
@@ -75,4 +75,9 @@ function redirect($path)
 function getImagePath($imageName)
 {
     return '/storage/' . $imageName;
+}
+
+function dump(...$args)
+{
+    echo '<pre>' . var_export($args, true) . '</pre>';
 }

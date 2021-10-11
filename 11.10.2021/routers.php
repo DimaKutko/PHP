@@ -36,3 +36,27 @@ RouterList::addRouter([
     'handler' => 'ProductsController@delete',
     'method' => 'POST',
 ]);
+
+RouterList::addRouter([
+    'url_path' => '/file_menager',
+    'handler' => 'FileMenagerController@index',
+    'method' => 'GET',
+]);
+
+RouterList::addRouter([
+    'url_path' => '/file_menager/upload',
+    'handler' => 'FileMenagerController@upload',
+    'method' => 'POST',
+]);
+
+RouterList::addRouter([
+    'url_path' => '/file_menager/rename',
+    'handler' => 'FileMenagerController@rename',
+    'method' => 'POST',
+]);
+
+RouterList::addRouter([
+    'url_path' => '/file_menager/delete',
+    'handler' => 'FileMenagerController@delete',
+    'method' => 'POST',
+]);
