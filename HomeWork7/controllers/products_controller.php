@@ -61,7 +61,7 @@ class ProductsController
     private static function  validateNewProduct()
     {
 
-        $name = $_POST['name'];
+        $name = $_POST['name'] ?? null;
 
         if (empty($name)) {
             return 'Name is required';
