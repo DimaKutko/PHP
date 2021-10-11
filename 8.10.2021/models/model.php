@@ -2,36 +2,77 @@
 
 class Model
 {
-    protected $table = null;
+    protected static $table = null;
     protected $fields = [];
+    protected $fillable = null;
 
-    public function all()
+    public function __construct($fields = [])
     {
-        $path = __DIR__ . "/../database/{$this->table}.txt";
+        $this->fields = $fields;
+    }
+
+    public static function all()
+    {
+        $table = static::$table;
+
+        $output = [];
+        $path = __DIR__ . "/../database/{$table}.txt";
         if (file_exists($path)) {
-            $output = json_decode(file_get_contents($path), true);
-            return $output ?? [];
+            $rows = json_decode(file_get_contents($path), true);
+
+            if ($rows) {
+                foreach ($rows as $row) {
+                    $output[] = new static($row);
+                }
+            }
         }
 
-        return [];
+        return $output;
     }
 
     public function save()
     {
-        $array = $this->all();
-        $array[] = $this->fields;
+        $fields = [];
 
-        $path = __DIR__ . "/../database/{$this->table}.txt";
+        foreach ($this->fillable as $f) {
+            $fields[$f] = $this->fields[$f] ?? null;
+        }
+
+        $array = static::allAsArray();
+        $array[] = $fields;
+        $table = static::$table;
+        $path = __DIR__ . "/../database/{$table}.txt";
         file_put_contents($path, json_encode($array));
+    }
+
+    public function getFields()
+    {
+        return $this->fields;
+    }
+
+    public static function allAsArray()
+    {
+        $output = [];
+
+        $all = static::all();
+        if ($all) {
+            foreach ($all as $obj) {
+                $output[] = $obj->getFields();
+            }
+        }
+
+        return $output;
     }
 
     public function removeByKey($key)
     {
-        $array = $this->all();
+        $array = static::allAsArray();
 
         unset($array[$key]);
 
-        $path = __DIR__ . "/../database/{$this->table}.txt";
+        $table = static::$table;
+        $path = __DIR__ . "/../database/{$table}.txt";
+
         file_put_contents($path, json_encode($array));
     }
 
@@ -42,6 +83,6 @@ class Model
 
     public function __get($name)
     {
-        return $this->fields = [$name];
+        return $this->fields[$name];
     }
 }

@@ -2,15 +2,16 @@
 
 class ProductModel extends Model
 {
-    protected $table = 'products';
+    protected static $table = 'products';
+    protected $fillable = ['name', 'sku', 'image'];
 
     public function removeByKey($key)
     {
         echo 'test';
 
-        $products = parent::all();
+        $products = static::all();
 
-        $image = $products[$key]['image'];
+        $image = $products[$key]->image;
 
         unlink(__DIR__ . '/../' . getImagePath($image));
 

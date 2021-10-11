@@ -4,12 +4,12 @@ class ProductsController
 {
     public function index()
     {
-        $product = new ProductModel();
+        $product = ProductModel::all();
 
-        $products = $product->all();
+        // dump($product);
 
         return renderView('products_table', [
-            'products' => $products
+            'products' => $product
         ]);
     }
 
@@ -55,7 +55,7 @@ class ProductsController
 
         $product->removeByKey($_POST['id']);
 
-        redirect('/products');
+        // redirect('/products');
     }
 
     private static function  validateNewProduct()
