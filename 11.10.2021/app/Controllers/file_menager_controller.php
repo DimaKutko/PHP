@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Controllers;
+
+
 class FileMenagerController
 {
     public function index()

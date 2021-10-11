@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Core;
+
 class RouterList
 {
     protected static $routerRules = [];
@@ -26,13 +28,14 @@ class RouterList
                 $controllerWithMethod = $routerRule['handler'];
                 $controllerName = explode('@', $controllerWithMethod)[0];
                 $methodName = explode('@', $controllerWithMethod)[1];
-                $controller = new $controllerName;
+                $fullName = 'App\\Controllers\\' . $controllerName;
+                $controller = new $fullName;
                 $controller->{$methodName}();
                 return;
             }
         }
 
-        $controller = new ErrorController();
+        $controller = new \App\Controllers\ErrorController();
         $controller->index();
     }
 }

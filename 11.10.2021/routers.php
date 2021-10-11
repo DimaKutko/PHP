@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\RouterList;
+
 RouterList::addRouter([
     'url_path' => '/',
     'handler' => 'HomeController@index',

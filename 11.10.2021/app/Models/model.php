@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Model;
+
+
 class Model
 {
     protected static $table = null;
@@ -16,7 +19,7 @@ class Model
         $table = static::$table;
 
         $output = [];
-        $path = __DIR__ . "/../database/{$table}.txt";
+        $path = __DIR__ . "/../../database/{$table}.txt";
         if (file_exists($path)) {
             $rows = json_decode(file_get_contents($path), true);
 
@@ -41,7 +44,7 @@ class Model
         $array = static::allAsArray();
         $array[] = $fields;
         $table = static::$table;
-        $path = __DIR__ . "/../database/{$table}.txt";
+        $path = __DIR__ . "/../../database/{$table}.txt";
         file_put_contents($path, json_encode($array));
     }
 
@@ -71,7 +74,7 @@ class Model
         unset($array[$key]);
 
         $table = static::$table;
-        $path = __DIR__ . "/../database/{$table}.txt";
+        $path = __DIR__ . "/../../database/{$table}.txt";
 
         file_put_contents($path, json_encode($array));
     }

@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Model;
+
+
 class ProductModel extends Model
 {
     protected static $table = 'products';
@@ -13,7 +16,7 @@ class ProductModel extends Model
 
         $image = $products[$key]->image;
 
-        unlink(__DIR__ . '/../' . getImagePath($image));
+        unlink(__DIR__  . getImagePath($image));
 
         parent::removeByKey($key);
     }
