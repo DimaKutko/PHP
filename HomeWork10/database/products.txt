@@ -1,0 +1,1 @@
+{"0":{"name":"\u0411\u0430\u043d\u0430\u043d","sku":"\u041e\u0431\u044b\u043a\u043d\u043e\u0432\u0435\u043d\u043d\u044b\u0439 ","image":"catalog_product_gal_mob_1.png"},"1":{"name":"New Product","sku":"New sku","image":"New image"},"3":{"name":"New Product","sku":"New sku","image":"New image"},"4":{"name":"New Product","sku":"New sku","image":"New image"}}
