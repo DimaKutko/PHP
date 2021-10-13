@@ -78,6 +78,11 @@ class Model
         file_put_contents($path, json_encode($array));
     }
 
+    public function getFillable()
+    {
+        return $this->fillable;
+    }
+
     public function __set($name, $value)
     {
         $this->fields[$name] = $value;
