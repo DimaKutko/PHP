@@ -45,7 +45,7 @@ class Model
         foreach ($this->fillable as $fillable) {
             $fields[$fillable] = $this->fields[$fillable] ?? null;
         }
-        
+
         static::getDriver()->insert($fields);
     }
 
@@ -59,7 +59,7 @@ class Model
         $output = [];
         $all = static::all();
         if ($all) {
-            foreach($all as $obj) {
+            foreach ($all as $obj) {
                 $output[] = $obj->getFields();
             }
         }
@@ -67,13 +67,18 @@ class Model
         return $output;
     }
 
+    public function removeByKey($key)
+    {
+        static::getDriver()->delete($key);
+    }
 
-    public function __set($name, $value) 
+
+    public function __set($name, $value)
     {
         $this->fields[$name] = $value;
     }
 
-    public function __get($name) 
+    public function __get($name)
     {
         return $this->fields[$name] ?? null;
     }
