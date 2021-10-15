@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Core\ModelDrivers\FileModelDriver;
+use App\Core\ModelDrivers\MySqlModelDriver;
 
 class Model
 {
     protected static $table = null;
+    protected $fillable = [];
     protected $fields = [];
-    protected $fillable = null;
-
 
     protected static function getDriver()
     {
@@ -18,7 +18,9 @@ class Model
             return $storage;
         }
 
-        $storage = new FileModelDriver(static::$table);
+        $modelDriver = 'App\\Core\\ModelDrivers\\' . MODEL_DRIVER . "ModelDriver";
+        $storage = new $modelDriver(static::$table);
+
         return $storage;
     }
 
@@ -30,12 +32,14 @@ class Model
     public static function all()
     {
         $rows = static::getDriver()->getAll();
+
         $output = [];
         if ($rows) {
-            foreach ($rows as $row) {
-                $output[] = new static($row);
+            foreach ($rows as $key => $value) {
+                $output[$key] = new static($value);
             }
         }
+
         return $output;
     }
 
@@ -54,6 +58,11 @@ class Model
         return $this->fields;
     }
 
+    public function getFillable()
+    {
+        return $this->fillable;
+    }
+
     public static function allAsArray()
     {
         $output = [];
@@ -67,11 +76,15 @@ class Model
         return $output;
     }
 
-    public function removeByKey($key)
+    public function delete($key)
     {
         static::getDriver()->delete($key);
     }
 
+    public function update($key, $data)
+    {
+        static::getDriver()->update($key, $data->getFields());
+    }
 
     public function __set($name, $value)
     {

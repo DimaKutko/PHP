@@ -1,9 +1,4 @@
 <?php
-$db_host = '127.0.0.1';
-$db_user = 'root';
-$db_password = 'root';
-$db_db = 'information_schema';
-$db_port = 8889;
 
 // $mysqli = new mysqli(
 //     $db_host,
@@ -32,10 +27,39 @@ $db_port = 8889;
 
 // var_dump($mysqli);
 
-$connector = mysqli_connect($db_host . ':' . $db_port, 'root', 'root', 'store');
+// $db_host = '127.0.0.1';
+// $db_user = 'root';
+// $db_password = 'root';
+// $db_db = 'information_schema';
+// $db_port = 8889;
 
-$result = mysqli_query($connector, 'SELECT * FROM products');
+// $connector = mysqli_connect($db_host . ':' . $db_port, 'root', 'root', 'store');
 
-var_dump(mysqli_fetch_all($result, MYSQLI_ASSOC));
+// $result = mysqli_query($connector, 'SELECT * FROM products');
 
-mysqli_close($connector);
+// var_dump(mysqli_fetch_all($result, MYSQLI_ASSOC));
+
+// mysqli_close($connector);
+
+include_once __DIR__ . '/bootstrap.php';
+
+use App\Models\ProductModel;
+
+// use App\Core\ModelDrivers\MySqlModelDriver;
+// $mysql = new MySqlModelDriver('products');
+
+// print_r($mysql->getAll());
+
+$product2 = new ProductModel();
+$product2->name = 'test name 2';
+$product2->sku = 'test sku 2';
+$product2->image = 'test image 2';
+
+$product3 = new ProductModel();
+$product3->name = '111';
+$product3->sku = '222';
+$product3->image = '333';
+
+// $product2->delete('0');
+
+dump($product2::all());

@@ -23,7 +23,7 @@ class FileModelDriver implements Contract
     {
         $fields = [];
 
-        foreach ($data->getFillable() as $f) {
+        foreach ($data->getFillable as $f) {
             $fields[$f] = $data->getFields()[$f] ?? null;
         }
 
@@ -51,9 +51,6 @@ class FileModelDriver implements Contract
         unset($array[$id]);
 
         file_put_contents($this->getPath(), json_encode($array));
-    }
-    public function where($field, $cond, $value)
-    {
     }
     public function getTableName()
     {

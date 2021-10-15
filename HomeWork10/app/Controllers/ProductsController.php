@@ -58,9 +58,9 @@ class ProductsController
     {
         $product = new ProductModel();
 
-        $product->removeByKey($_POST['id']);
+        $product->delete($_POST['id']);
 
-        // redirect('/products');
+        redirect('/products');
     }
 
     private static function  validateNewProduct()
