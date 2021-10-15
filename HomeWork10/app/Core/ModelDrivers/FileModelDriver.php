@@ -2,7 +2,6 @@
 
 namespace App\Core\ModelDrivers;
 
-use App\Models\Model;
 
 class FileModelDriver implements Contract
 {
@@ -14,14 +13,13 @@ class FileModelDriver implements Contract
     }
     public function getAll(): array
     {
-
         if (file_exists($this->getPath())) {
             return json_decode(file_get_contents($this->getPath()), true) ?? [];
         }
 
         return [];
     }
-    public function insert(Model $data)
+    public function insert($data)
     {
         $fields = [];
 
@@ -33,7 +31,7 @@ class FileModelDriver implements Contract
         $array[] = $fields;
         file_put_contents($this->getPath(), json_encode($array));
     }
-    public function update($id, Model $data)
+    public function update($id, $data)
     {
         $array = $this->getAll();
 

@@ -2,11 +2,25 @@
 
 namespace App\Models;
 
+use App\Core\ModelDrivers\FileModelDriver;
+
 class Model
 {
     protected static $table = null;
     protected $fields = [];
     protected $fillable = null;
+
+
+    protected static function getDriver()
+    {
+        static $storage = null;
+        if (!is_null($storage)) {
+            return $storage;
+        }
+
+        $storage = new FileModelDriver(static::$table);
+        return $storage;
+    }
 
     public function __construct($fields = [])
     {
@@ -15,36 +29,24 @@ class Model
 
     public static function all()
     {
-        $table = static::$table;
-
+        $rows = static::getDriver()->getAll();
         $output = [];
-        $path = __DIR__ . "/../../database/{$table}.txt";
-        if (file_exists($path)) {
-            $rows = json_decode(file_get_contents($path), true);
-
-            if ($rows) {
-                foreach ($rows as $row) {
-                    $output[] = new static($row);
-                }
+        if ($rows) {
+            foreach ($rows as $row) {
+                $output[] = new static($row);
             }
         }
-
         return $output;
     }
 
     public function save()
     {
         $fields = [];
-
-        foreach ($this->fillable as $f) {
-            $fields[$f] = $this->fields[$f] ?? null;
+        foreach ($this->fillable as $fillable) {
+            $fields[$fillable] = $this->fields[$fillable] ?? null;
         }
-
-        $array = static::allAsArray();
-        $array[] = $fields;
-        $table = static::$table;
-        $path = __DIR__ . "/../../database/{$table}.txt";
-        file_put_contents($path, json_encode($array));
+        
+        static::getDriver()->insert($fields);
     }
 
     public function getFields()
@@ -55,10 +57,9 @@ class Model
     public static function allAsArray()
     {
         $output = [];
-
         $all = static::all();
         if ($all) {
-            foreach ($all as $obj) {
+            foreach($all as $obj) {
                 $output[] = $obj->getFields();
             }
         }
@@ -66,30 +67,14 @@ class Model
         return $output;
     }
 
-    public function removeByKey($key)
-    {
-        $array = static::allAsArray();
 
-        unset($array[$key]);
-
-        $table = static::$table;
-        $path = __DIR__ . "/../../database/{$table}.txt";
-
-        file_put_contents($path, json_encode($array));
-    }
-
-    public function getFillable()
-    {
-        return $this->fillable;
-    }
-
-    public function __set($name, $value)
+    public function __set($name, $value) 
     {
         $this->fields[$name] = $value;
     }
 
-    public function __get($name)
+    public function __get($name) 
     {
-        return $this->fields[$name];
+        return $this->fields[$name] ?? null;
     }
 }
