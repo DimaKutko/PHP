@@ -41,12 +41,25 @@
 
 // mysqli_close($connector);
 
-echo '123';
-
 include_once __DIR__ . '/bootstrap.php';
 
-use App\Core\ModelDrivers\MySqlModelDriver;
+use App\Models\ProductModel;
 
-$mysql = new MySqlModelDriver('products');
+// use App\Core\ModelDrivers\MySqlModelDriver;
+// $mysql = new MySqlModelDriver('products');
 
-dump($mysql->getAll());
+// print_r($mysql->getAll());
+
+$product2 = new ProductModel();
+$product2->name = 'test name 2';
+$product2->sku = 'test sku 2';
+$product2->image = 'test image 2';
+
+$product3 = new ProductModel();
+$product3->name = '111';
+$product3->sku = '222';
+$product3->image = '333';
+
+// $product2->delete('0');
+
+dump($product2::all());

@@ -6,96 +6,98 @@ namespace App\Core\ModelDrivers;
 class MySqlModelDriver implements Contract
 {
     protected $tableName = null;
-
-    private $db_host = '127.0.0.1';
-    private $db_user = 'root';
-    private $db_password = 'root';
-    private $db_db = 'Store';
-    private $db_port = 8889;
+    protected $connect = null;
 
     public function __construct($tableName) //Not ready
     {
         $this->tableName = $tableName;
+
+        $this->connect = mysqli_connect(
+            DB_HOST . ':' . DB_PORT,
+            DB_USRE,
+            DB_PASSWORD,
+            DB_DB
+        );
     }
 
-    protected function getConnector()
+    function __destruct()
     {
-        return mysqli_connect($this->db_host . ':' . $this->db_port, $this->db_user, $this->db_password, $this->db_db);
+        mysqli_close($this->connect);
     }
 
-    protected function closeConnector($connector)
+    public function getAll(): array //Done
     {
-        mysqli_close($connector);
-    }
-
-    public function getAll(): array //Not ready
-    {
-
-        $connector = $this->getConnector();
-        $result = mysqli_query($connector, "SELECT * FROM {$this->tableName}");
-        $this->closeConnector($connector);
+        $result = mysqli_query(
+            $this->connect,
+            "SELECT * FROM {$this->tableName}"
+        );
 
         $array = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        // if (file_exists($this->getPath())) {
-        //     return json_decode(file_get_contents($this->getPath()), true) ?? [];
-        // }
 
         $updatedArray = [];
 
-        foreach ($variable as $key => $value) {
-            // $updatedArray[$key] => 
+        for ($i = 0; $i < count($array); $i++) {
+            $id = $array[$i]['id'];
+            unset($array[$i]['id']);
+
+            $updatedArray[$id] = $array[$i];
         }
 
-        return  $array ?? [];
+
+        return  $updatedArray;
     }
 
-    public function insert($data) //Not ready
+    public function insert($data) //DONE
     {
-        $fields = [];
-
-        foreach ($data->getFillable() as $f) {
-            $fields[$f] = $data->getFields()[$f] ?? null;
+        $keys = '';
+        $values = '';
+        foreach ($data as $key => $value) {
+            $keys .= "`{$key}`,";
+            $values .= "'{$value}',";
         }
 
-        $array = $this->getAll();
-        $array[] = $fields;
-        file_put_contents($this->getPath(), json_encode($array));
+        $sqlStr = "INSERT INTO `{$this->tableName}` (" .
+            substr($keys, 0, -1) .
+            ') VALUES (' .
+            substr($values, 0, -1) .
+            ') ';
+
+        $this->query($sqlStr);
     }
 
-    public function update($id, $data) //Not ready
+    public function update($id, $data) //Done
     {
-        $array = $this->getAll();
-
-        $fields = [];
-
-        foreach ($data->getFillable() as $f) {
-            $fields[$f] = $data->getFields()[$f] ?? null;
+        $sets = '';
+        foreach ($data as $key => $value) {
+            $sets .= "`{$key}`='{$value}', ";
         }
 
-        $array[$id] = $fields;
-        file_put_contents($this->getPath(), json_encode($array));
+        $sqlStr =
+            "UPDATE `{$this->tableName}` SET " .
+            substr($sets, 0, -2) .
+            " WHERE id = {$id};";
+
+        $this->query($sqlStr);
     }
 
-    public function delete($id) //Not ready
+    public function delete($id) //Done
     {
-        $array = $this->getAll();
+        $sqlStr =
+            "DELETE FROM `{$this->tableName}` " .
+            "WHERE id = {$id};";
 
-        unset($array[$id]);
-
-        file_put_contents($this->getPath(), json_encode($array));
+        $this->query($sqlStr);
     }
 
-    public function where($field, $cond, $value) //No TODO
+    private function query($sqlStr)
     {
+        if ($this->connect->query($sqlStr) === FALSE) {
+            echo "Error: " . $sqlStr . "<br>" . $this->connect->error;
+        }
     }
 
-    public function getTableName() //Not ready
+    public function getTableName()
     {
         return $this->tableName;
-    }
-
-    protected function getPath() //Not ready
-    {
-        return __DIR__ . "/../../../database/{$this->tableName}.txt";
     }
 }

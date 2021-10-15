@@ -11,6 +11,5 @@ interface Contract
     public function insert($data);
     public function update($id, $data);
     public function delete($id);
-    public function where($field, $cond, $value);
     public function getTableName();
 }
