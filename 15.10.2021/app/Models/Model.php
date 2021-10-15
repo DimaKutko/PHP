@@ -19,7 +19,7 @@ class Model
             return $storage;
         }
 
-        $storage = new MySqlModelDriver(static::$table);
+        $storage = new FileModelDriver(static::$table);
         return $storage;
     }
 
