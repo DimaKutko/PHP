@@ -11,9 +11,6 @@ class ProductsController
     {
         $product = ProductModel::all();
 
-        // throw new \Exception("Simulate exception");
-        // trigger_error('Simulate error', E_USER_ERROR);
-
         return renderView('products_table', [
             'products' => $product
         ]);
