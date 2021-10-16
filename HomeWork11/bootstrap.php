@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
+require __DIR__ . '/vendor/autoload.php';
 
 spl_autoload_register(function ($class) {
     $prefix = 'App\\';
@@ -19,3 +20,4 @@ spl_autoload_register(function ($class) {
 
 include_once __DIR__ . '/functions.php';
 include_once __DIR__ . '/routers.php';
+require_once __DIR__ . '/logger.php';

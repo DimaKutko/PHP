@@ -62,3 +62,9 @@ RouterList::addRouter([
     'handler' => 'FileMenagerController@delete',
     'method' => 'POST',
 ]);
+
+RouterList::addRouter([
+    'url_path' => '/error',
+    'handler' => 'ErrorController@index',
+    'method' => 'GET',
+]);
