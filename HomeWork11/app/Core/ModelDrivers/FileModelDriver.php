@@ -11,6 +11,7 @@ class FileModelDriver implements Contract
     {
         $this->tableName = $tableName;
     }
+
     public function getAll(): array
     {
         if (file_exists($this->getPath())) {
@@ -19,31 +20,23 @@ class FileModelDriver implements Contract
 
         return [];
     }
+
     public function insert($data)
     {
-        $fields = [];
-
-        foreach ($data->getFillable as $f) {
-            $fields[$f] = $data->getFields()[$f] ?? null;
-        }
-
         $array = $this->getAll();
-        $array[] = $fields;
+        $array[] = $data;
         file_put_contents($this->getPath(), json_encode($array));
     }
+
     public function update($id, $data)
     {
         $array = $this->getAll();
 
-        $fields = [];
+        $array[$id] = $data;
 
-        foreach ($data->getFillable() as $f) {
-            $fields[$f] = $data->getFields()[$f] ?? null;
-        }
-
-        $array[$id] = $fields;
         file_put_contents($this->getPath(), json_encode($array));
     }
+
     public function delete($id)
     {
         $array = $this->getAll();
@@ -52,6 +45,7 @@ class FileModelDriver implements Contract
 
         file_put_contents($this->getPath(), json_encode($array));
     }
+
     public function getTableName()
     {
         return $this->tableName;
