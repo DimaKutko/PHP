@@ -20,4 +20,7 @@ spl_autoload_register(function ($class) {
 
 include_once __DIR__ . '/functions.php';
 include_once __DIR__ . '/routers.php';
-require_once __DIR__ . '/logger.php';
+
+if (LOGGER_ENABLE) {
+    include_once __DIR__ . '/logger.php';
+}

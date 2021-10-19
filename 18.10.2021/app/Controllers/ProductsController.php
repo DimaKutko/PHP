@@ -11,7 +11,7 @@ class ProductsController
     {
         $product = ProductModel::all();
 
-        return renderView('products_table', [
+        return renderView('products', [
             'products' => $product
         ]);
     }
@@ -56,14 +56,17 @@ class ProductsController
     {
         $product = new ProductModel();
 
-        $product->delete($_POST['id']);
+        if (isset($_POST['id'])) {
+            $product->delete($_POST['id']);
+        }
 
-        redirect('/products');
+        return renderView('produtcs_table', [
+            'products' => ProductModel::all()
+        ]);
     }
 
     private static function  validateNewProduct()
     {
-
         $name = $_POST['name'];
 
         if (empty($name)) {

@@ -5,3 +5,4 @@ const DB_USRE = 'root';
 const DB_PASSWORD = 'root';
 const DB_DB = 'Store';
 const MODEL_DRIVER = 'MySql'; // MySql | File
+const LOGGER_ENABLE = true; // true | false
