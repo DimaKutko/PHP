@@ -53,12 +53,12 @@ class Model
         static::getDriver()->insert($fields);
     }
 
-    public function getFields()
+    public function getFields(): array
     {
         return $this->fields;
     }
 
-    public function getFillable()
+    public function getFillable(): array
     {
         return $this->fillable;
     }
