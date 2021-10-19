@@ -59,7 +59,10 @@ class ProductsController
         if (isset($_POST['id'])) {
             $product->delete($_POST['id']);
         }
+    }
 
+    public function renderProductTable()
+    {
         return renderView('produtcs_table', [
             'products' => ProductModel::all()
         ]);
