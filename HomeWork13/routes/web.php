@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\FileMenagerController;
-use App\Http\Controllers\Home;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Home
-Route::get('/', [HomeController::class, 'index']);
 
-//Products
-Route::get('/products', [ProductsController::class, 'index']);
-Route::get('/products/show', [ProductsController::class, 'show']);
-Route::get('/products/renderProductTable', [ProductsController::class, 'renderProductTable']);
-
-Route::post('/products/create', [ProductsController::class, 'create']);
-Route::post('/products/delete', [ProductsController::class, 'delete']);
+Route::get('/', function () {
+    return view('welcome');
+});
