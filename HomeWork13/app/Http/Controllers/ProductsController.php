@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -9,7 +10,7 @@ class ProductsController extends Controller
     public function index()
     {
         return view('products.index', [
-            'products' => []
+            'products' => Product::all(),
         ]);
     }
 
@@ -25,13 +26,18 @@ class ProductsController extends Controller
 
     public function delete()
     {
-        redirect('\products');
+        echo 123;
+
+        if (isset($_POST['id'])) {
+            $product = Product::findOrFail($_POST['id']);
+            $product->delete();
+        }
     }
 
     public function renderProductTable()
     {
-        return view('products.table', [
-            'products' => []
+        return view('products.index', [
+            'products' => Product::all(),
         ]);
     }
 }

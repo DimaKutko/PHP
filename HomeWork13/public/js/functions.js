@@ -5,7 +5,9 @@ var deleteProduct = function(id, pName) {
     $.ajax({
         url: "/products/delete",
         method: "POST",
-        data: { id: id }
+        data: {
+            "id": id
+        }
     }).done(function() {
         updateProductTable();
         toastr.success(`Product\ "${pName}\" removed`);
