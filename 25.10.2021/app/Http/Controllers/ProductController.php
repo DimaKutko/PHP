@@ -8,7 +8,7 @@ class ProductController
 {
     public function index()
     {
-        return view('index');
+        return view('products.index');
     }
 
     public function renderProductsTable()
