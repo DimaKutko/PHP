@@ -10,8 +10,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $author = Author::first();
-//        dump($author->posts->pluck('title'));
+        // $author = Author::first();
+        //        dump($author->posts->pluck('title'));
         return view('home.index');
     }
 }
