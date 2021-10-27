@@ -3,7 +3,6 @@
 
 @section('content')
 
-<div class='container'>
-    Products page
-</div>
+@include('products.table')
+
 @endsection

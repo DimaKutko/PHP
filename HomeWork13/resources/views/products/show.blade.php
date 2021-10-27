@@ -2,7 +2,6 @@
 
 @section('content')
 
-<div class='container'>
-    Show products page
-</div>
+Show products page
+
 @endsection
