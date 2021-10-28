@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostDeleteRequest;
 use App\Models\Product;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -19,24 +21,23 @@ class ProductsController extends Controller
         return view('products.show');
     }
 
-    public function create()
+    public function create(PostDeleteRequest $request)
     {
-        redirect('\products');
+        Product::create($request->all());
+
+        return redirect(route('products'));
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
-        echo 123;
+        $request->validateWithBag('post', ['id' => ['required']]);
 
-        if (isset($_POST['id'])) {
-            $product = Product::findOrFail($_POST['id']);
-            $product->delete();
-        }
+        Product::findOrFail($request->post('id'))->delete();
     }
 
     public function renderProductTable()
     {
-        return view('products.index', [
+        return view('products.table', [
             'products' => Product::all(),
         ]);
     }

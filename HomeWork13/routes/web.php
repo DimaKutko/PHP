@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 //Products
-Route::get('/products', [ProductsController::class, 'index']);
+Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/products/show', [ProductsController::class, 'show']);
 Route::get('/products/renderProductTable', [ProductsController::class, 'renderProductTable']);
 Route::post('/products/delete', [ProductsController::class, 'delete']);
-Route::post('/products/create', [ProductsController::class, 'create']);
+Route::post('/products/create', [ProductsController::class, 'create'])->name('products.create');
