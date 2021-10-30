@@ -21,6 +21,7 @@
             <td>{{$post->created_at}}</td>
             <td>
                 <form action="{{route('admin.posts.delete')}}" method="post">
+                    @csrf
                     <input type="hidden" name='id' value="{{$post->id}}">
                     <button type="submit" class="btn btn-danger">Remove</button>
                 </form>
