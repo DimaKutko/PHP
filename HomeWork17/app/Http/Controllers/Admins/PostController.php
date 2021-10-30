@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeletePostRequest;
+use App\Http\Requests\IdPostRequest;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -21,7 +23,28 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('admins.posts.create', []);
+        return view('admins.posts.create', [
+            'post' => null
+        ]);
+    }
+
+    public function edit(IdPostRequest $request)
+    {
+        return view('admins.posts.create', [
+            'post' => Post::findOrFail($request->get('id'))
+        ]);
+    }
+
+    public function update(UpdatePostRequest $request)
+    {
+        $post = Post::where('id', $request->post('id'))->first();
+
+        $post->title = $request->post('title');
+        $post->content = $request->post('content');
+        $post->is_active = $request->post('is_active') ?? false;
+        $post->save();
+
+        return redirect(route('admin.posts'))->with('status', 'success updated !');
     }
 
     public function store(StorePostRequest $request)
@@ -36,7 +59,7 @@ class PostController extends Controller
         return view('admins.posts.show', []);
     }
 
-    public function delete(DeletePostRequest $request)
+    public function delete(IdPostRequest $request)
     {
         Post::findOrFail($request->post('id'))->delete();
 
