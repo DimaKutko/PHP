@@ -6,6 +6,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">{{__('admin.title')}}</th>
+            <th scope="col">Category</th>
             <th scope="col">{{__('admin.is_active')}}</th>
             <th scope="col">{{__('admin.date')}}</th>
             <th scope="col"></th>
@@ -18,6 +19,11 @@
         <tr>
             <th scope="row">{{$post->id}}</th>
             <th>{{$post->title}}</th>
+            @if ($post->category_id != null)
+                <th>{{\App\Models\Category::where('id', $post->category_id)->first()->name}}</th>
+            @else
+                <th>-</th>
+            @endif
             <td>{{$post->is_active}}</td>
             <td>{{$post->created_at}}</td>
             <td>

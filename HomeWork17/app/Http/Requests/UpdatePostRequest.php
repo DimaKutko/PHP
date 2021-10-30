@@ -27,6 +27,7 @@ class UpdatePostRequest extends FormRequest
             'title' => 'required|max:255|min:3',
             'content' => 'required',
             'id' => 'required',
+            'category_id' => 'required',
         ];
     }
 }

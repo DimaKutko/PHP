@@ -1,36 +1,28 @@
 @extends('admin_layout')
 
 @section('content')
-<form 
-@if ($post ?? null) 
-action="{{route('admin.posts.update')}}"
-@else
-action="{{route('admin.posts.store')}}"
-@endif
-method="POST">
+<form action="{{route('admin.posts.store')}}" method="POST">
     @csrf
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Title</label>
-        <input type="text" name="title" class="form-control" value="{{$post->title ?? null}}">
+        <input type="text" name="title" class="form-control">
     </div>
     <div class="mb-3">
         <label for="text" class="form-label">Content</label>
-        <input type="text" name="content" class="form-control" value="{{$post->content ?? null}}">
+        <input type="text" name="content" class="form-control">
+    </div>
+    <div class="mb-3">
+    <select title="Category" name="category_id" class="form-select" aria-label="Default select example">
+        @foreach (\App\Models\Category::all() as $category)
+        <option value="{{$category->id}}">{{$category->name}}</option>
+        @endforeach
+      </select>
     </div>
     <div class="mb-3 form-check">
-        <input value="1" name="is_active" type="checkbox" class="form-check-input" id="exampleCheck1" 
-        @if ($post) 
-            @if ($post->is_active) checked @else null @endif
-        @else 
-            null 
-        @endif
-        >
+        <input value="1" name="is_active" type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Is active</label>
     </div>
-    <input type="hidden" name="id" class="form-control" value="{{$post->id ?? null}}">
-    <button type="submit" class="btn btn-primary">
-        @if ($post ?? null) Update @else Create @endif
-    </button>
+    <button type="submit" class="btn btn-primary">Create</button>
 </form>
 @endsection
 

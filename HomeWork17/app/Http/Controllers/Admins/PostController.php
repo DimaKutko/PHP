@@ -23,14 +23,19 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('admins.posts.create', [
-            'post' => null
-        ]);
+        return view('admins.posts.create', []);
+    }
+
+    public function store(StorePostRequest $request)
+    {
+        Post::create($request->except('_token'));
+
+        return redirect(route('admin.posts'))->with('status', 'success created !');
     }
 
     public function edit(IdPostRequest $request)
     {
-        return view('admins.posts.create', [
+        return view('admins.posts.edit', [
             'post' => Post::findOrFail($request->get('id'))
         ]);
     }
@@ -42,21 +47,10 @@ class PostController extends Controller
         $post->title = $request->post('title');
         $post->content = $request->post('content');
         $post->is_active = $request->post('is_active') ?? false;
+        $post->category_id = $request->post('category_id') ?? null;
         $post->save();
 
         return redirect(route('admin.posts'))->with('status', 'success updated !');
-    }
-
-    public function store(StorePostRequest $request)
-    {
-        Post::create($request->except('_token'));
-
-        return redirect(route('admin.posts'))->with('status', 'success created !');
-    }
-
-    public function show()
-    {
-        return view('admins.posts.show', []);
     }
 
     public function delete(IdPostRequest $request)
