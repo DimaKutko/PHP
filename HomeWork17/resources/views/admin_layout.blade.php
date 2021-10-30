@@ -18,10 +18,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/admin/posts">{{__('admin.header_home')}}</a>
+                            <a class="nav-link active" aria-current="page" href="/admin/posts">{{__('admin.header_posts')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/posts/create">{{__('admin.header_create')}}</a>
+                            <a class="nav-link active" aria-current="page" href="/admin/category">{{__('admin.header_category')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/posts/create">{{__('admin.header_create_post')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/posts/create">{{__('admin.header_create_category')}}</a>
                         </li>
                         <li>
                             <div class="dropdown">

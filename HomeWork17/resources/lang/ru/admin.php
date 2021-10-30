@@ -2,8 +2,10 @@
 
 return [
     'header_title' => 'Админ панель постов',
-    'header_home' => 'Дом',
-    'header_create' => 'Создать',
+    'header_posts' => 'Посты',
+    'header_create_post' => 'Создать пост',
+    'header_category' => 'Категории',
+    'header_create_category' => 'Создать категорию',
     'title' => 'Заголовок',
     'is_active' => 'Активировано',
     'date' => 'Дата',
