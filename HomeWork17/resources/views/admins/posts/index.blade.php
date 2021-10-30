@@ -8,6 +8,7 @@
             <th scope="col">{{__('admin.title')}}</th>
             <th scope="col">{{__('admin.is_active')}}</th>
             <th scope="col">{{__('admin.date')}}</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,12 @@
             <th>{{$post->title}}</th>
             <td>{{$post->is_active}}</td>
             <td>{{$post->created_at}}</td>
+            <td>
+                <form action="{{route('admin.posts.delete')}}" method="post">
+                    <input type="hidden" name='id' value="{{$post->id}}">
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                </form>
+            </td>
         </tr>
         @endforeach
         @endif

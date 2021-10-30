@@ -22,6 +22,7 @@ Route::get('/products', [ProductController::class, 'index']);
 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('admin.posts');
 Route::get('/admin/posts/create', [PostController::class, 'create'])->name('admin.posts.create');
+Route::post('/admin/posts/delete', [PostController::class, 'delete'])->name('admin.posts.delete');
 Route::post('/admin/posts', [PostController::class, 'store'])->name('admin.posts.store');
 
 Route::get('locale/{code}', [LocaleController::class, 'setLocale'])->name('locale');
