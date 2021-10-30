@@ -44,7 +44,12 @@ class Locale
 
     public static function detectDefault()
     {
-        //        $_SERVER[]
-        return self::EN;
+        $serverCodeLang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+        if (self::availableLocales()->where('code', $serverCodeLang)->isEmpty()) {
+            return self::RU;
+        } else {
+            return $serverCodeLang;
+        }
     }
 }
