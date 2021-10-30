@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admins\CategoryController;
 use App\Http\Controllers\Admins\LocaleController;
 use App\Http\Controllers\Admins\PostController;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,5 @@ Route::post('/admin/posts', [PostController::class, 'store'])->name('admin.posts
 Route::post('/admin/posts/delete', [PostController::class, 'delete'])->name('admin.posts.delete');
 
 Route::get('locale/{code}', [LocaleController::class, 'setLocale'])->name('locale');
+
+Route::resource('/admin/categories', CategoryController::class);
