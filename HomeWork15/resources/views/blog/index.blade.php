@@ -17,7 +17,7 @@
         <div class="row tm-row">
             <article class="col-12 col-md-6 tm-post">
                 <hr class="tm-hr-primary">
-                <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                <a href="{{route('blog.index')}}" class="effect-lily tm-post-link tm-pt-60">
                     <div class="tm-post-link-inner">
                         <img src="img/img-01.jpg" alt="Image" class="img-fluid">
                     </div>
@@ -40,7 +40,7 @@
             </article>
             <article class="col-12 col-md-6 tm-post">
                 <hr class="tm-hr-primary">
-                <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                <a href="{{route('blog.index')}}" class="effect-lily tm-post-link tm-pt-60">
                     <div class=" tm-post-link-inner">
                         <img src="img/img-02.jpg" alt="Image" class="img-fluid">
                     </div>
@@ -63,7 +63,7 @@
             </article>
             <article class="col-12 col-md-6 tm-post">
                 <hr class="tm-hr-primary">
-                <a href="post.html" class="effect-lily tm-post-link tm-pt-20">
+                <a href="{{route('blog.index')}}" class="effect-lily tm-post-link tm-pt-20">
                     <div class="tm-post-link-inner">
                         <img src="img/img-03.jpg" alt="Image" class="img-fluid">
                     </div>
@@ -85,7 +85,7 @@
             </article>
             <article class="col-12 col-md-6 tm-post">
                 <hr class="tm-hr-primary">
-                <a href="post.html" class="effect-lily tm-post-link tm-pt-20">
+                <a href="{{route('blog.index')}}" class="effect-lily tm-post-link tm-pt-20">
                     <div class="tm-post-link-inner">
                         <img src="img/img-04.jpg" alt="Image" class="img-fluid">
                     </div>
@@ -107,7 +107,7 @@
             </article>
             <article class="col-12 col-md-6 tm-post">
                 <hr class="tm-hr-primary">
-                <a href="post.html" class="effect-lily tm-post-link tm-pt-20">
+                <a href="{{route('blog.index')}}" class="effect-lily tm-post-link tm-pt-20">
                     <div class="tm-post-link-inner">
                         <img src="img/img-05.jpg" alt="Image" class="img-fluid">
                     </div>
@@ -131,7 +131,7 @@
             </article>
             <article class="col-12 col-md-6 tm-post">
                 <hr class="tm-hr-primary">
-                <a href="post.html" class="effect-lily tm-post-link tm-pt-20">
+                <a href="{{route('blog.index')}}" class="effect-lily tm-post-link tm-pt-20">
                     <div class="tm-post-link-inner">
                         <img src="img/img-06.jpg" alt="Image" class="img-fluid">
                     </div>
