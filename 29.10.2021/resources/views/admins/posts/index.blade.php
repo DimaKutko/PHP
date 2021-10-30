@@ -5,9 +5,9 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Is active</th>
-            <th scope="col">Date</th>
+            <th scope="col">{{__('admin.title')}}</th>
+            <th scope="col">{{__('admin.is_active')}}</th>
+            <th scope="col">{{__('admin.date')}}</th>
         </tr>
     </thead>
     <tbody>

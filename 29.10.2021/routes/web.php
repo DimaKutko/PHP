@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admins\LocaleController;
 use App\Http\Controllers\Admins\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -22,3 +23,5 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/admin/posts', [PostController::class, 'index'])->name('admin.posts');
 Route::get('/admin/posts/create', [PostController::class, 'create'])->name('admin.posts.create');
 Route::post('/admin/posts', [PostController::class, 'store'])->name('admin.posts.store');
+
+Route::get('locale/{code}', [LocaleController::class, 'setLocale'])->name('locale');
