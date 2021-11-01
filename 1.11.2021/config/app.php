@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        \LocaleEdu\LocaleServiceProvider::class,
 
         /*
          * Application Service Providers...

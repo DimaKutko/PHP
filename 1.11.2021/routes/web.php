@@ -28,6 +28,4 @@ Route::post('/admin/posts/update', [PostController::class, 'update'])->name('adm
 Route::post('/admin/posts', [PostController::class, 'store'])->name('admin.posts.store');
 Route::post('/admin/posts/delete', [PostController::class, 'delete'])->name('admin.posts.delete');
 
-Route::get('locale/{code}', [LocaleController::class, 'setLocale'])->name('locale');
-
 Route::resource('/admin/categories', CategoryController::class);

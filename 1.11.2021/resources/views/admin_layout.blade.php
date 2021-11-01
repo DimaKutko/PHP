@@ -29,7 +29,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/categories/create">{{__('admin.header_create_category')}}</a>
                         </li>
+
                         <li>
+                            @include('locale::dropdown')
+                        </li>
+                        {{-- <li>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{__('admin.language')}}
@@ -40,7 +44,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                 </div>
             </div>
         </nav>
