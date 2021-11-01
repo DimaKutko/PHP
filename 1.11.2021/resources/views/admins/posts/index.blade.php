@@ -28,7 +28,6 @@
             <td>{{$post->created_at}}</td>
             <td>
                 <form action="{{route('admin.posts.edit')}}" method="get">
-                    @csrf
                     <input type="hidden" name='id' value="{{$post->id}}">
                     <button type="submit" class="btn btn-warning">Edit</button>
                 </form>
