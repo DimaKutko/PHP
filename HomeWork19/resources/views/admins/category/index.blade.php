@@ -18,7 +18,6 @@
             <th>{{$category->name}}</th>
             <td>
                 <form action="{{route('categories.edit', ['category' => $category])}}" method="get">
-                    @csrf
                     <button type="submit" class="btn btn-warning">Edit</button>
                 </form>
             </td>
