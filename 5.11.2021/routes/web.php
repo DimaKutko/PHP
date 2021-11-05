@@ -21,11 +21,11 @@ use App\Http\Controllers\ProductController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 
-Route::get('/admin/posts', [PostController::class, 'index'])->name('admin.posts');
-Route::get('/admin/posts/create', [PostController::class, 'create'])->name('admin.posts.create');
-Route::get('/admin/posts/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
-Route::post('/admin/posts/update', [PostController::class, 'update'])->name('admin.posts.update');
-Route::post('/admin/posts', [PostController::class, 'store'])->name('admin.posts.store');
-Route::post('/admin/posts/delete', [PostController::class, 'delete'])->name('admin.posts.delete');
+// Route::get('/admin/posts', [PostController::class, 'index'])->name('admin.posts');
+// Route::get('/admin/posts/create', [PostController::class, 'create'])->name('admin.posts.create');
+// Route::get('/admin/posts/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
+// Route::post('/admin/posts/update', [PostController::class, 'update'])->name('admin.posts.update');
+// Route::post('/admin/posts', [PostController::class, 'store'])->name('admin.posts.store');
+// Route::post('/admin/posts/delete', [PostController::class, 'delete'])->name('admin.posts.delete');
 
-Route::resource('/admin/categories', CategoryController::class);
+// Route::resource('/admin/categories', CategoryController::class);
