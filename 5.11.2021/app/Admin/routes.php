@@ -12,5 +12,8 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('home');
+    $router->resource('authors', AuthorController::class);
+    $router->resource('posts', PostController::class);
+    $router->resource('tags', TagController::class);
 
 });

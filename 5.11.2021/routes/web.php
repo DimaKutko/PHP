@@ -1,5 +1,6 @@
 <?php
 
+// use App\Admin\Controllers\AuthorController;
 use App\Http\Controllers\Admins\CategoryController;
 use App\Http\Controllers\Admins\LocaleController;
 use App\Http\Controllers\Admins\PostController;
@@ -20,6 +21,9 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
+
+// $router->resource('authors', AuthorController::class);
+
 
 // Route::get('/admin/posts', [PostController::class, 'index'])->name('admin.posts');
 // Route::get('/admin/posts/create', [PostController::class, 'create'])->name('admin.posts.create');

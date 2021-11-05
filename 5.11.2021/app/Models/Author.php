@@ -15,4 +15,9 @@ class Author extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->surname;
+    }
 }

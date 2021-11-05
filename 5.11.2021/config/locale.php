@@ -6,5 +6,5 @@ return [
         'en' => 'English'
     ],
 
-    'dafault' => 'en',
+    'dafault' => 'ru',
 ];

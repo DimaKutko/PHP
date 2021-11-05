@@ -10,18 +10,6 @@ class LocaleService
     const RU = 'ru';
     const SESSION_KEY = 'locale';
 
-
-    // public static function availableLocales()
-    // {
-    //     $available_locales = config('locale.available_locales');
-
-    //     if (empty($available_locales)) {
-    //         throw new LocaleException('available_locales is empty');
-    //     }
-
-    //     return $available_locales;
-    // }
-
     public static function availableLocales()
     {
         $availableLocales = config('locale.available_locales');
@@ -57,6 +45,8 @@ class LocaleService
     public static function detectDefault()
     {
         $serverCodeLang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+        return config('locale.default');
 
         if (self::availableLocales()->where('code', $serverCodeLang)->isEmpty()) {
             if (empty(config('locale.default'))) {
