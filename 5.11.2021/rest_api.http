@@ -1,0 +1,48 @@
+@BASE_URL=http://127.0.0.1:8888/api
+
+###GET POSTS
+GET {{BASE_URL}}/posts
+
+###Create post
+POST {{BASE_URL}}/posts
+Content-Type: application/json
+
+{
+    "title": "Post title",
+    "content": "Post content"
+}
+
+###Update post
+PUT {{BASE_URL}}/posts/14
+Content-Type: application/json
+
+{
+    "title": "Post title upd",
+    "content": "Post content"
+}
+
+###Delete post
+DELETE {{BASE_URL}}/posts/13
+
+###GET Authors
+GET {{BASE_URL}}/authors
+
+###Create Author
+POST {{BASE_URL}}/authors
+Content-Type: application/json
+
+{
+    "name": "Name",
+    "surname": "Surname"
+}
+
+###Update Author
+PUT {{BASE_URL}}/authors/5
+Content-Type: application/json
+
+{
+    "name": "New name"
+}
+
+###Delete Author
+DELETE {{BASE_URL}}/authors/5
