@@ -11,15 +11,15 @@ class ApiPostController extends Controller
 {
     public function index(Request $request)
     {
-        $page = $request->get('page', 1);
+        $offset = $request->get('offset', 0);
         $limit = $request->get('limit', 20);
 
-        $posts = Post::skip(($page - 1) * $limit)->limit($limit)->get();
+        $posts = Post::skip(($offset))->limit($limit)->get();
         $total = Post::count('id');
         return response()->json([
             'list' => $posts,
             'paging' => [
-                'page' => intval($page),
+                'offset' => intval($offset),
                 'limit' => intval($limit),
                 'total' => intval($total),
             ]
