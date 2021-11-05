@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ApiPostStoreRequest;
 use App\Http\Requests\Api\ApiPostUpdateRequest;
 use App\Models\Post;
+use App\Models\Utils\Paginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,26 +14,21 @@ class ApiPostController extends Controller
 {
     public function index(Request $request)
     {
-        $offset = $request->get('offset', 0);
-        $limit = $request->get('limit', 20);
+        $paginator = new Paginator(new Post(), $request);
 
-        $posts = Post::skip(($offset))->limit($limit)->get();
-        $total = Post::count('id');
+        $posts = $paginator->get();
+        $paging = $paginator->paging();
 
         return response()->json([
             'list' => $posts,
-            'paging' => [
-                'offset' => intval($offset),
-                'limit' => intval($limit),
-                'total' => intval($total),
-            ]
+            'paging' => $paging,
         ]);
     }
 
     public function store(ApiPostStoreRequest $request)
     {
         Post::create($request->all());
-        
+
         return response()->json([
             'succes' => true
         ]);
